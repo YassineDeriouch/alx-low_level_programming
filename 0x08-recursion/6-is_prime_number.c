@@ -1,35 +1,50 @@
 #include "main.h"
-int calculo_primo(int num_, int inf);
 
 /**
- * is_prime_number - function that  returns 1 if the input integer is a prime.
- *@n: first value
+ * is_divisible - tests whether the number is divisible
+ * @n: the number being tested
+ * @div: the divisor
  *
- * Return: Return solution
+ * Description: The function finds whether the number is divisible
+ * by 2 and return the value
+ * Return: result
  */
-int is_prime_number(int n)
+int is_divisible(int n, int div)
 {
-	int a = 2;
+	if (n % div == 0)
+	{
+		return (0);
+	}
 
-	if (n == 1)
-		return (0);
-	if (n < 0)
-		return (0);
-	return (calculo_primo(n, a));
+	if (div == n / 2)
+	{
+		return (1);
+	}
+
+	return (is_divisible(n, div + 1));
 }
 
 /**
- * calculo_primo - function that returns 1 if the input integer is a prime.
- *@num_: first value
- *@inf: second value
+ * is_prime_number - is the integer a prime number
+ * @n: the number being tested
  *
- * Return: Return solution
+ * Description: The function tests whether is a prime number
+ * and returns the appropriate value.
+ * Return: result
  */
-int calculo_primo(int num_, int inf)
+int is_prime_number(int n)
 {
-	if (num_ / 2 < inf)
-		return (1);
-	if (num_ % inf == 0)
+	int div = 2;
+
+	if (n <= 1)
+	{
 		return (0);
-	return (calculo_primo(num_, inf + 1));
+	}
+
+	if (n <= 3)
+	{
+		return (1);
+	}
+
+	return (is_divisible(n, div));
 }
